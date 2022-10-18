@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Container,
+  Link,
+  Typography,
+} from "@mui/material/";
 
 import Header from "~/components/MainLayout/components/Header";
 // import { logger } from "react-query/types/react/logger";
@@ -30,7 +33,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios
+      await axios
         .get(
           "https://m0n1i622y2.execute-api.eu-west-1.amazonaws.com/dev/products"
         )
@@ -57,17 +60,18 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = () => {
         <Container sx={{ pb: 8 }} maxWidth="md">
           {products.map(
             (product: {
-              productId: string;
+              id: string;
               title: string;
               image: string;
               description: string;
               price: number;
+              count: number;
             }) => (
-              <Card sx={{ maxWidth: 750 }} key={product.productId}>
+              <Card sx={{ maxWidth: 750 }} key={product.id}>
                 <CardMedia
                   component="img"
                   alt="green iguana"
-                  height="300"
+                  height="400"
                   image={product.image}
                 />
                 <CardContent>
@@ -82,8 +86,11 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  {/*<Button size="small">Share</Button>*/}
-                  {/*<Button size="small">Learn More</Button>*/}
+                  <Button size="small">-</Button>
+                  <Typography variant="body2" color="text.secondary">
+                    {product.count}
+                  </Typography>
+                  <Button size="small">+</Button>
                 </CardActions>
               </Card>
             )
