@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 type CSVFileImportProps = {
   url: string;
@@ -13,7 +12,6 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-
     if (files && files.length > 0) {
       const file = files[0];
       setFile(file);
@@ -55,7 +53,6 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
       setFile(undefined);
     }
   };
-
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
