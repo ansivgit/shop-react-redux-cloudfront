@@ -9,13 +9,13 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { formatAsPrice } from "~/utils/utils";
 import {
-  useAllProducts,
+  useAvailableProducts,
   useDeleteAvailableProduct,
   useInvalidateAvailableProducts,
 } from "~/queries/products";
 
 export default function ProductsTable() {
-  const { data = [] } = useAllProducts();
+  const { data = [] } = useAvailableProducts();
   const { mutate: deleteAvailableProduct } = useDeleteAvailableProduct();
   const invalidateAvailableProducts = useInvalidateAvailableProducts();
 
